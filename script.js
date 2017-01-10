@@ -35,7 +35,12 @@ function Player(name){
     this.hand= [];
 }
 Player.prototype.drawHand = function(){
-    console.log("test");
+    for(var i = 0; i < 4; i++){
+        this.hand.push(newWall.wall.pop());
+    }
+    document.getElementById("test1").innerHTML = this.hand;
 };
+var playerOne = new Player("Jim");
 var newWall = new Wall();
-console.log(newWall.wall);
+newWall.shuffle();
+document.getElementById("test").innerHTML = newWall.wall;
