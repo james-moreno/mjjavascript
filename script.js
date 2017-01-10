@@ -1,5 +1,4 @@
-//tile class
-console.log("Assembling Tiles and Wall");
+//Main JS for Wall and Players
 function Wall() {
     this.wall = [];
     for(var j = 1; j <= 4; j++){
