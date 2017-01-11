@@ -1,4 +1,13 @@
 //Main JS for Wall and Players
+
+tableDiscards = [];
+tableDiscard = undefined;
+
+function newDiscard(tile){
+    tableDiscards.push(tableDiscard);
+    tableDiscard = tile;
+}
+//Wall Class
 function Wall() {
     this.wall = [];
     for(var j = 1; j <= 4; j++){
@@ -29,17 +38,30 @@ Wall.prototype.shuffle = function(){
     }
     return this.wall;
 };
+
+//Player Class
 function Player(name){
     this.name = name;
     this.hand= [];
 }
-Player.prototype.drawHand = function(){
-    for(var i = 0; i < 4; i++){
-        this.hand.push(newWall.wall.pop());
-    }
-    document.getElementById("test1").innerHTML = this.hand;
+Player.prototype.drawTile = function(){
+    this.hand.push(newWall.wall.pop());
+    document.getElementById("playerHand").innerHTML = this.hand;
+    document.getElementById("wall").innerHTML = newWall.wall;
 };
+Player.prototype.discard = function(){
+    var discard = this.hand.pop();
+    if(this.hand.length){
+        newDiscard(discard);
+    }
+    document.getElementById("playerHand").innerHTML = this.hand;
+    document.getElementById("wall").innerHTML = newWall.wall;
+    document.getElementById("discard").innerHTML = tableDiscard;
+    document.getElementById("discardsPile").innerHTML = tableDiscards;
+};
+
+//Tests
 var playerOne = new Player("Jim");
 var newWall = new Wall();
 newWall.shuffle();
-document.getElementById("test").innerHTML = newWall.wall;
+document.getElementById("wall").innerHTML = newWall.wall;

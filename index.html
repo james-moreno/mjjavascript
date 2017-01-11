@@ -3,11 +3,19 @@
     <head>
         <meta charset="utf-8">
         <title>Mahjong</title>
+        <style media="screen">
+            #wall {
+                word-wrap:break-word;
+            }
+        </style>
     </head>
     <body>
-        <p id="test"></p>
-        <p>Player One's Hand: <span id="test1"></span></p>
-        <button onclick="playerOne.drawHand()">Draw Cards</button>
+        <p id="wall"></p>
+        <p>Player One's Hand: <span id="playerHand"></span></p>
+        <button onclick="playerOne.drawTile()">Draw Tile</button>
+        <button onclick="playerOne.discard()">Discard</button>
+        <p>Discard Pile:<span id="discardsPile"></span></p>
+        <p>Discarded:<span id="discard"></span></p>
     </body>
     <script type="text/javascript" src="script.js"></script>
 </html>
