@@ -1,12 +1,16 @@
+(function(){
+
 //Main JS for Wall and Players
 
 tableDiscards = [];
 tableDiscard = undefined;
+players = [];
 
 function newDiscard(tile){
     tableDiscards.push(tableDiscard);
     tableDiscard = tile;
 }
+
 //Wall Class
 function Wall() {
     this.wall = [];
@@ -65,3 +69,5 @@ var playerOne = new Player("Jim");
 var newWall = new Wall();
 newWall.shuffle();
 document.getElementById("wall").innerHTML = newWall.wall;
+
+})();
