@@ -11,6 +11,22 @@ function newDiscard(tile){
     tableDiscard = tile;
 }
 
+function dealTiles(){
+    function dealFour(){
+        for(var idx = 0; idx < players.length; idx++){
+            for(var i = 1; i <= 4; i++){
+                players[idx].hand.push(newWall.wall.pop());
+            }
+        }
+    }
+    dealFour();
+    dealFour();
+    dealFour();
+    dealFour();
+    document.getElementById("wall").innerHTML = newWall.wall;
+}
+
+
 //Wall Class
 function Wall() {
     this.wall = [];
@@ -49,6 +65,7 @@ function Player(name){
     this.hand= [];
 }
 Player.prototype.drawTile = function(){
+    console.log(this.hand);
     this.hand.push(newWall.wall.pop());
     document.getElementById("playerHand").innerHTML = this.hand;
     document.getElementById("wall").innerHTML = newWall.wall;
@@ -65,9 +82,22 @@ Player.prototype.discard = function(){
 };
 
 //Tests
-var playerOne = new Player("Jim");
+var playerOne = new Player("1");
+var playerTwo = new Player("2");
+var playerThree = new Player("3");
+var playerFour = new Player("4");
+
+players.push(playerOne, playerTwo, playerThree, playerFour);
+console.log(players);
+console.log(playerOne);
+
 var newWall = new Wall();
 newWall.shuffle();
 document.getElementById("wall").innerHTML = newWall.wall;
+
+//onClick Funcitons
+document.getElementById("dealButton").onclick = dealTiles;
+document.getElementById("drawOne").onclick = playerOne.drawTile;
+document.getElementById("discardOne").onclick = playerOne.discard;
 
 })();
