@@ -1,16 +1,23 @@
 {
-  "name": "TestProject",
+  "name": "Mahjong",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "script.js",
+  "dependencies": {},
+  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/james-moreno/mjjavascript.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "express": "^4.14.0",
-    "socket.io": "^1.4.8"
-  }
+  "bugs": {
+    "url": "https://github.com/james-moreno/mjjavascript/issues"
+  },
+  "homepage": "https://github.com/james-moreno/mjjavascript#readme"
 }
