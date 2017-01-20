@@ -2,33 +2,58 @@
 
 //Main JS for Wall and Players
 
-tableDiscards = [];
-tableDiscard = undefined;
-players = [];
+var tableDiscards = [];
+var tableDiscard;
+var players = [];
+var turn = 0;
+
+//cycling turn tracker
+function nextTurn(){
+    if(turn >= 3){
+        turn = 0;
+    }
+    else {
+        turn++;
+    }
+}
+
+// TurnFunction, Work in progress
+// function normalTurn(playerNum){
+//     var draw = newWall.wall.pop();
+//     players[playerNum].hand.push(draw);
+// }
 
 function newDiscard(tile){
     tableDiscards.push(tableDiscard);
     tableDiscard = tile;
 }
 
+
+//Tile Class
+function Tile (suit, value){
+    this.suit = suit;
+    this.value = value;
+}
+
+
 //Wall Class
 function Wall() {
     this.wall = [];
     for(var j = 1; j <= 4; j++){
         for(var i = 1; i <= 9; i++){
-            this.wall.push("a"+i);
-            this.wall.push("b"+i);
-            this.wall.push("c"+i);
+            this.wall[this.wall.length] = new Tile('bamboo', i);
+            this.wall[this.wall.length] = new Tile('spot', i);
+            this.wall[this.wall.length] = new Tile('char', i);
         }
-        this.wall.push("nor");
-        this.wall.push("sou");
-        this.wall.push("wes");
-        this.wall.push("eas");
-        this.wall.push("mid");
-        this.wall.push("pro");
-        this.wall.push("whi");
-        this.wall.push(j+"sea");
-        this.wall.push(j+"flo");
+        this.wall[this.wall.length] = new Tile("north", null);
+        this.wall[this.wall.length] = new Tile("east", null);
+        this.wall[this.wall.length] = new Tile("south", null);
+        this.wall[this.wall.length] = new Tile("west", null);
+        this.wall[this.wall.length] = new Tile("middle", null);
+        this.wall[this.wall.length] = new Tile("prosperity", null);
+        this.wall[this.wall.length] = new Tile("white", null);
+        this.wall[this.wall.length] = new Tile("flower", null);
+        this.wall[this.wall.length] = new Tile("season", null);
     }
 }
 
@@ -72,6 +97,7 @@ Player.prototype.discard = function(){
     if(this.hand.length){
         newDiscard(discard);
     }
+    console.log(this.hand);
 };
 
 //Tests
@@ -81,11 +107,12 @@ var playerThree = new Player("3");
 var playerFour = new Player("4");
 
 players.push(playerOne, playerTwo, playerThree, playerFour);
-console.log(players);
 
 var newWall = new Wall();
 newWall.shuffle();
-newWall.dealTiles();
-console.log(players[0].hand.sort());
+// newWall.dealTiles();
+console.log(newWall);
+console.log(newWall.wall.sort());
+
 
 })();

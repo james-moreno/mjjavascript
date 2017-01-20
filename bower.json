@@ -1,0 +1,17 @@
+{
+  "name": "Mahjong",
+  "description": "",
+  "main": "script.js",
+  "authors": [
+    "james-moreno <bonsaimo7@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/james-moreno/mjjavascript",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
