@@ -9,7 +9,7 @@ function generateWall(){
     for(var j = 1; j <= 4; j++){
         for(var i = 1; i <= 9; i++){
             wall[wall.length] = new Tile('bamboo', i);
-            wall[wall.length] = new Tile('spot', i);
+            wall[wall.length] = new Tile('aspot', i);
             wall[wall.length] = new Tile('char', i);
         }
         wall[wall.length] = new Tile("north", null);
@@ -28,4 +28,21 @@ console.log(wall);
 console.log(wall.length);
 
 wall.sort();
-console.log(wall);
+var sortBy = function (key, minor) {
+    return function (o, p) {
+        var a, b;
+        if (o && p && typeof o === 'object' && typeof p === 'object') {
+            a = o[key];
+            b = p[key];
+            if (a === b) {
+                return typeof minor === 'function' ? minor(o, p) : 0;
+            }
+            if (typeof a === typeof b) {
+                return a < b ? -1 : 1;
+            }
+            return typeof a < typeof b ? -1 : 1;
+        }
+    };
+};
+
+console.log(wall.sort(sortBy('suit', sortBy('value'))));

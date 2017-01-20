@@ -111,7 +111,6 @@ players.push(playerOne, playerTwo, playerThree, playerFour);
 var newWall = new Wall();
 newWall.shuffle();
 // newWall.dealTiles();
-console.log(newWall);
 console.log(newWall.wall.sort());
 
 
