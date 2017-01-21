@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+    <head>
+        <meta charset="utf-8">
+        <title>Mahjong</title>
+        <link rel="stylesheet" href="/assets/styles.css" media="screen" title="no title">
+    </head>
+    <body>
+        <div ng-controller="gameController">
+            <p>Player One's Tiles:
+                <ul ng-repeat="player in players">
+                    Player {{player.name}}
+                    <li class="hand ng-class: tile" ng-repeat="tile in player.hand">{{tile.suit}} {{tile.value}}</li>
+                </ul>
+            </p>
+        </div>
+    </body>
+    <script src="angular/angular.js" charset="utf-8"></script>
+    <script src="assets/app.js" charset="utf-8"></script>
+</html>

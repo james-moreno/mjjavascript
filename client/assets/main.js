@@ -18,10 +18,10 @@ function nextTurn(){
 }
 
 // TurnFunction, Work in progress
-// function normalTurn(playerNum){
-//     var draw = newWall.wall.pop();
-//     players[playerNum].hand.push(draw);
-// }
+function normalTurn(playerNum){
+    var draw = newWall.wall.pop();
+    players[playerNum].hand.push(draw);
+}
 
 function newDiscard(tile){
     tableDiscards.push(tableDiscard);
