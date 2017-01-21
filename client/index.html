@@ -7,10 +7,16 @@
     </head>
     <body>
         <div ng-controller="gameController">
+            <p>Discards:
+                <span class="hand ng-class: tile" ng-repeat="tile in tableDiscards">{{tile.suit}} {{tile.value}}</span>
+            </p>
+            <p>Most Recent Discard:
+                <span class="hand ng-class: tile">{{tableDiscard.suit}} {{tableDiscard.value}}</span>
+            </p>
             <p>Player One's Tiles:
                 <ul ng-repeat="player in players">
                     Player {{player.name}}
-                    <li class="hand ng-class: tile" ng-repeat="tile in player.hand">{{tile.suit}} {{tile.value}}</li>
+                    <li ng-click="player.discard($index)" class="hand ng-class: tile" ng-repeat="tile in player.hand">{{tile.value}} {{tile.suit}}</li>
                 </ul>
             </p>
         </div>
