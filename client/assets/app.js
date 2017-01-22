@@ -4,7 +4,8 @@ app.controller('gameController', ['$scope',  function($scope){
     $scope.tableDiscards = [];
     $scope.tableDiscard = undefined;
     $scope.players = [];
-    var turn = 0;
+    $scope.turn = 0;
+    $scope.master = 0;
 
     //cycling turn tracker
     function nextTurn(){
@@ -17,16 +18,20 @@ app.controller('gameController', ['$scope',  function($scope){
     }
 
     // TurnFunction, Work in progress
-    function normalTurn(playerNum){
+    var normalTurn = function(playerNum){
         var draw = newWall.wall.pop();
         players[playerNum].hand.push(draw);
-    }
+    };
 
-    function newDiscard(tile){
-        console.log(tile);
-        $scope.tableDiscards.push($scope.tableDiscard);
-        $scope.tableDiscard = tile;
-    }
+    var newDiscard = function (tile){
+        if($scope.tableDiscard === undefined){
+            $scope.tableDiscard = tile;
+        }
+        else{
+            $scope.tableDiscards.push($scope.tableDiscard);
+            $scope.tableDiscard = tile;
+        }
+    };
 
 
     //Tile Class
@@ -51,9 +56,9 @@ app.controller('gameController', ['$scope',  function($scope){
             this.wall[this.wall.length] = new Tile("west", null);
             this.wall[this.wall.length] = new Tile("middle", null);
             this.wall[this.wall.length] = new Tile("prosperity", null);
-            this.wall[this.wall.length] = new Tile("white", null);
-            this.wall[this.wall.length] = new Tile("flower", null);
-            this.wall[this.wall.length] = new Tile("season", null);
+            this.wall[this.wall.length] = new Tile("white", j);
+            this.wall[this.wall.length] = new Tile("flower", j);
+            this.wall[this.wall.length] = new Tile("season", j);
         }
     }
 
@@ -70,17 +75,14 @@ app.controller('gameController', ['$scope',  function($scope){
     };
 
     Wall.prototype.dealTiles = function(){
-        function dealFour(){
+        console.log(this.wall);
+        for(var j = 0; j < 4; j ++){
             for(var idx = 0; idx < $scope.players.length; idx++){
                 for(var i = 1; i <= 4; i++){
-                    $scope.players[idx].hand.push(newWall.wall.pop());
+                    $scope.players[idx].hand.push(this.wall.pop());
                 }
             }
         }
-        dealFour();
-        dealFour();
-        dealFour();
-        dealFour();
     };
 
 
@@ -117,6 +119,11 @@ app.controller('gameController', ['$scope',  function($scope){
     Player.prototype.sortHand = function(){
         this.hand.sort(this.sortBy('suit', this.sortBy('value')));
     };
+    Player.prototype.roll = function(){
+        var roll = (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1);
+        console.log(roll);
+        return roll;
+    };
 
     //Tests
     var playerOne = new Player("1");
@@ -130,6 +137,7 @@ app.controller('gameController', ['$scope',  function($scope){
     newWall.shuffle();
     newWall.dealTiles();
     $scope.players[0].sortHand();
+    console.log($scope.players[0]);
     }
 ]);
 
